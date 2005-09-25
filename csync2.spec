@@ -4,9 +4,9 @@ Version:	1.22
 Release:	0.1
 License:	GPL
 Group:		Daemons
-Source0:	%{name}-%{version}.tar.gz
+Source0:	http://oss.linbit.com/csync2/%{name}-%{version}.tar.gz
 # Source0-md5:	6504aba35683d1663fb530b50f4c1dfd
-URL:		http://oss.linbit.com/csync2
+URL:		http://oss.linbit.com/csync2/
 BuildRequires:	bison
 BuildRequires:	flex
 BuildRequires:	librsync-devel
