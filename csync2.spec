@@ -1,4 +1,5 @@
 Summary:	Cluster sync tool
+Summary(pl):	Narzêdzie do synchronizacji klastra
 Name:		csync2
 Version:	1.22
 Release:	0.1
@@ -20,6 +21,13 @@ on multiple hosts in a cluster in sync. Csync2 can handle complex
 setups with much more than just 2 hosts, handle file deletions and can
 detect conflicts. It is expedient for HA-clusters, HPC-clusters, COWs
 and server farms.
+
+%description -l pl
+Csync2 to narzêdzie do synchronizacji klastra. Mo¿e byæ u¿ywane do
+utrzymywania zgodno¶ci plików na wielu hostach w klastrze. Csync2 jest
+w stanie obs³u¿yæ z³o¿one konfiguracje z wiêcej ni¿ 2 hostami,
+obs³ugiwaæ usuwanie plików i wykrywaæ konflikty. Jest praktyczne dla
+klastrów HA, HPC, COW oraz farm serwerów.
 
 %prep
 %setup -q
