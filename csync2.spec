@@ -1,5 +1,5 @@
 Summary:	Cluster sync tool
-Summary(pl.UTF-8):   Narzędzie do synchronizacji klastra
+Summary(pl.UTF-8):	Narzędzie do synchronizacji klastra
 Name:		csync2
 Version:	1.22
 Release:	0.1
