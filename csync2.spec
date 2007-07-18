@@ -4,7 +4,7 @@ Summary:	Cluster sync tool
 Summary(pl.UTF-8):	Narzędzie do synchronizacji klastra
 Name:		csync2
 Version:	1.33
-Release:	0.3
+Release:	0.4
 License:	GPL v2
 Group:		Daemons
 Source0:	http://oss.linbit.com/csync2/%{name}-%{version}.tar.gz
@@ -16,6 +16,7 @@ BuildRequires:	gnutls-devel
 BuildRequires:	librsync-devel
 BuildRequires:	openssl-devel
 BuildRequires:	sqlite-devel
+Requires:	setup > 2.4.10-4
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -48,11 +49,6 @@ install -d $RPM_BUILD_ROOT%{_var}/lib/csync2
 
 %clean
 rm -rf $RPM_BUILD_ROOT
-
-%post
-if ! grep -q "^csync2" /etc/services ; then
-     echo -e "csync2\t\t30865/tcp\t\t# Cluster sync" >> /etc/services
-fi
 
 %files
 %defattr(644,root,root,755)
