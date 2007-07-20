@@ -1,0 +1,68 @@
+#!/bin/sh
+#
+# csync2	This shell script takes care of starting and stopping csync2
+#
+# chkconfig:	345 90 25
+# description:	csync2 daemon
+# processname:	csync2
+#
+# pidfile:	/var/run/csync2.pid
+
+# Source function library.
+. /etc/rc.d/init.d/functions
+
+# Source networking configuration.
+. /etc/sysconfig/network
+
+# Check that networking is up.
+if is_yes "${NETWORKING}"; then
+	if [ ! -f /var/lock/subsys/network -a "$1" != stop -a "$1" != status ]; then
+		msg_network_down csync2
+		exit 1
+	fi
+else
+	exit 0
+fi
+
+# Get service configuration
+[ -f /etc/sysconfig/csync2 ] && . /etc/sysconfig/csync2
+
+RETVAL=0
+# See how we were called.
+case "$1" in
+  start)
+	# Start daemons.
+	if [ ! -f /var/lock/subsys/csync2 ]; then
+		msg_starting csync2
+		daemon --fork csync2 -ii ${CSYNC2_OPTIONS}
+		RETVAL=$?
+		[ $RETVAL -eq 0 ] && touch /var/lock/subsys/csync2
+	else
+		msg_already_running csync2
+	fi
+	;;
+  stop)
+	# Stop daemons.
+	if [ -f /var/lock/subsys/csync2 ]; then
+		msg_stopping csync2
+		killproc csync2
+		rm -f /var/lock/subsys/csync2 >/dev/null 2>&1
+	else
+		msg_not_running csync2
+	fi
+	;;
+  restart|reload|force-restart|force-reload)
+	$0 stop
+	$0 start
+	exit $?
+	;;
+  status)
+	status csync2 csync2
+	exit $?
+	;;
+  *)
+	msg_usage "$0 {start|stop|restart|reload|force-restart|force-reload|status}"
+	exit 3
+esac
+
+exit $RETVAL

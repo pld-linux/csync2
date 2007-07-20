@@ -1,0 +1,9 @@
+SERVICE_NAME=csync2
+SOCK_TYPE=stream
+PROTOCOL=tcp
+PORT=30865
+FLAGS=nowait
+USER=root
+SERVER=tcpd
+DAEMON=/usr/sbin/csync2
+DAEMONARGS="-i"

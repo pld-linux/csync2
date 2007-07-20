@@ -1,0 +1,5 @@
+# Csync2 startup configuration file
+
+# Try to define nice-level for running csyncd
+SERVICE_RUN_NICE_LEVEL="+5"
+
