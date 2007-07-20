@@ -1,0 +1,11 @@
+--- ./csync2.1.org	2006-08-08 17:46:54.000000000 +0000
++++ ./csync2.1	2007-07-20 14:55:49.000000000 +0000
+@@ -144,7 +144,7 @@
+ Creating key file:
+ .B csync2 -k filename
+ .TP
+-Warning: Csync2 will refuse to do anything when a /etc/csync2.lock file is found.
++Warning: Csync2 will refuse to do anything when a /etc/csync2/csync2.lock file is found.
+ .SH SEE ALSO
+ .BR sqlite (1).
+ .SH AUTHOR

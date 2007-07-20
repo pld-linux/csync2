@@ -4,11 +4,12 @@ Summary:	Cluster sync tool
 Summary(pl.UTF-8):	Narzędzie do synchronizacji klastra
 Name:		csync2
 Version:	1.33
-Release:	0.4
+Release:	0.5
 License:	GPL v2
 Group:		Daemons
 Source0:	http://oss.linbit.com/csync2/%{name}-%{version}.tar.gz
 # Source0-md5:	e16e3c0f4285439cef09a6b63319a0b0
+Patch0:		%{name}-man_fix.patch
 URL:		http://oss.linbit.com/csync2/
 BuildRequires:	bison
 BuildRequires:	flex
@@ -18,6 +19,8 @@ BuildRequires:	openssl-devel
 BuildRequires:	sqlite-devel
 Requires:	setup > 2.4.10-4
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
+
+%define		_sysconfdir	/etc/%{name}
 
 %description
 Csync2 is a cluster synchronization tool. It can be used to keep files
@@ -35,6 +38,7 @@ klastrów HA, HPC, COW oraz farm serwerów.
 
 %prep
 %setup -q
+%patch0 -p1
 
 %build
 %configure
@@ -53,6 +57,7 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog README TODO csync2.xinetd csync2_locheck.sh paper.pdf
+%dir %{_sysconfdir}
 %attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/csync2.cfg
 %attr(755,root,root) %{_sbindir}/csync2
 %attr(755,root,root) %{_sbindir}/csync2-compare
