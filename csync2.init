@@ -27,11 +27,7 @@ fi
 # Get service configuration
 [ -f /etc/sysconfig/csync2 ] && . /etc/sysconfig/csync2
 
-RETVAL=0
-# See how we were called.
-case "$1" in
-  start)
-	# Start daemons.
+start() {
 	if [ ! -f /var/lock/subsys/csync2 ]; then
 		msg_starting csync2
 		daemon --fork csync2 -ii ${CSYNC2_OPTIONS}
@@ -40,8 +36,9 @@ case "$1" in
 	else
 		msg_already_running csync2
 	fi
-	;;
-  stop)
+}
+
+stop() {
 	# Stop daemons.
 	if [ -f /var/lock/subsys/csync2 ]; then
 		msg_stopping csync2
@@ -50,18 +47,43 @@ case "$1" in
 	else
 		msg_not_running csync2
 	fi
+}
+
+RETVAL=0
+# See how we were called.
+case "$1" in
+  start)
+  	start
+	;;
+  stop)
+  	stop
 	;;
   restart|reload|force-restart|force-reload)
-	$0 stop
-	$0 start
+	stop
+	start
+	;;
+  init)
+  	nls "Now the csync2 host key will be generated."
+	/usr/bin/openssl genrsa \
+		-out /etc/csync2/csync2_ssl_key.pem 1024
+	chmod 600 /etc/csync2/csync2_ssl_key.pem
+	/usr/bin/openssl req -new \
+		-key /etc/csync2/csync2_ssl_key.pem \
+		-out /etc/csync2/csync2_ssl_cert.csr
+	chmod 600 /etc/csync2/csync2_ssl_cert.csr
+	/usr/bin/openssl x509 -req -days 600 \
+		-in /etc/csync2/csync2_ssl_cert.csr \
+		-signkey /etc/csync2/csync2_ssl_key.pem \
+		-out /etc/csync2/csync2_ssl_cert.pem
+	chmod 600 /etc/csync2/csync2_ssl_cert.pem
 	exit $?
 	;;
   status)
-	status csync2 csync2
+	status csync2
 	exit $?
 	;;
   *)
-	msg_usage "$0 {start|stop|restart|reload|force-restart|force-reload|status}"
+	msg_usage "$0 {start|stop|restart|reload|force-restart|force-reload|init|status}"
 	exit 3
 esac
 
