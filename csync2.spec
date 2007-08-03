@@ -3,7 +3,7 @@ Summary(pl.UTF-8):	Narzędzie do synchronizacji klastra
 Name:		csync2
 Version:	1.33
 Release:	0.9
-License:	GPL v2
+License:	GPL v2+
 Group:		Daemons
 Source0:	http://oss.linbit.com/csync2/%{name}-%{version}.tar.gz
 # Source0-md5:	e16e3c0f4285439cef09a6b63319a0b0
