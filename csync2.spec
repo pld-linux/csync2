@@ -1,12 +1,12 @@
 Summary:	Cluster sync tool
 Summary(pl.UTF-8):	Narzędzie do synchronizacji klastra
 Name:		csync2
-Version:	1.33
+Version:	1.34
 Release:	0.9
 License:	GPL v2+
 Group:		Daemons
 Source0:	http://oss.linbit.com/csync2/%{name}-%{version}.tar.gz
-# Source0-md5:	e16e3c0f4285439cef09a6b63319a0b0
+# Source0-md5:	efc8a3548996b79cef2ad76af5e93cd8
 Source1:	%{name}.init
 Source2:	%{name}.inet
 Source3:	%{name}.sysconfig
