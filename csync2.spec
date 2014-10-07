@@ -16,7 +16,8 @@ BuildRequires:	flex
 BuildRequires:	gnutls-devel
 BuildRequires:	librsync-devel
 BuildRequires:	openssl-devel
-BuildRequires:	sqlite-devel
+BuildRequires:	sqlite3-devel
+BuildRequires:	texlive-format-pdflatex
 Requires:	setup > 2.4.10-4
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
