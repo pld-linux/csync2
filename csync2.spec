@@ -10,6 +10,7 @@ Source0:	http://oss.linbit.com/csync2/%{name}-%{version}.tar.gz
 Source1:	%{name}.init
 Source2:	%{name}.inet
 Source3:	%{name}.sysconfig
+Patch0:		%{name}-fix-sonames.patch
 URL:		http://oss.linbit.com/csync2/
 BuildRequires:	bison
 BuildRequires:	flex
@@ -91,6 +92,7 @@ klastrów HA, HPC, COW oraz farm serwerów.
 
 %prep
 %setup -q
+%patch0 -p1
 
 %build
 %configure \
