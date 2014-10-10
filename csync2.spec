@@ -101,10 +101,10 @@ klastrów HA, HPC, COW oraz farm serwerów.
 
 %build
 %configure \
+	--enable-gnutls \
 	--enable-mysql \
 	--enable-postgres \
-	--enable-sqlite3 \
-	--disable-gnutls
+	--enable-sqlite3
 %{__make}
 
 %install
