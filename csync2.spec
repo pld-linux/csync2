@@ -16,10 +16,15 @@ BuildRequires:	bison
 BuildRequires:	flex
 BuildRequires:	gnutls-devel
 BuildRequires:	librsync-devel
+BuildRequires:	mysql-devel
 BuildRequires:	openssl-devel
+BuildRequires:	postgresql-devel
 BuildRequires:	sqlite3-devel
 BuildRequires:	texlive-format-pdflatex
 Requires:	setup > 2.4.10-4
+Suggests:	mysql-libs
+Suggests:	postgresql-libs
+Suggests:	sqlite3
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_sysconfdir	/etc/%{name}
@@ -96,6 +101,9 @@ klastrów HA, HPC, COW oraz farm serwerów.
 
 %build
 %configure \
+	--enable-mysql \
+	--enable-postgres \
+	--enable-sqlite3 \
 	--disable-gnutls
 %{__make}
 
