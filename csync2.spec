@@ -11,7 +11,10 @@ Source1:	%{name}.init
 Source2:	%{name}.inet
 Source3:	%{name}.sysconfig
 Patch0:		%{name}-fix-sonames.patch
+Patch1:		%{name}-docdata.patch
 URL:		http://oss.linbit.com/csync2/
+BuildRequires:	autoconf
+BuildRequires:	automake
 BuildRequires:	bison
 BuildRequires:	flex
 BuildRequires:	gnutls-devel
@@ -98,8 +101,12 @@ klastrów HA, HPC, COW oraz farm serwerów.
 %prep
 %setup -q
 %patch0 -p1
+%patch1 -p0
 
 %build
+%{__aclocal}
+%{__automake}
+%{__autoconf}
 %configure \
 	--enable-gnutls \
 	--enable-mysql \

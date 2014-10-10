@@ -1,0 +1,10 @@
+--- Makefile.am.orig	2014-10-10 17:09:05.337884952 +0100
++++ Makefile.am	2014-10-10 17:09:14.581270556 +0100
+@@ -59,7 +59,6 @@
+ 
+ endif
+ 
+-doc_DATA = $(docfiles)
+ dist_doc_DATA = $(docfiles)
+ 
+ dist-clean-local:
