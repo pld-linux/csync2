@@ -1,0 +1,14 @@
+--- csync2-2.0/rsync.c~	2013-05-02 13:19:36.000000000 +0200
++++ csync2-2.0/rsync.c	2018-04-22 13:19:46.761262945 +0200
+@@ -461,7 +461,11 @@
+ 		goto out;
+ 
+ 	csync_debug(3, "Running rs_sig_file() from librsync....\n");
++#ifdef RS_DEFAULT_STRONG_LEN
+ 	result = rs_sig_file(basis_file, sig_file, RS_DEFAULT_BLOCK_LEN, RS_DEFAULT_STRONG_LEN, &stats);
++#else /* librsync >= 1.0.0 */
++	result = rs_sig_file(basis_file, sig_file,RS_DEFAULT_BLOCK_LEN, 8, RS_MD4_SIG_MAGIC, &stats);
++#endif
+ 	*sig_file_out = sig_file;
+ 	sig_file = NULL;
+ 	if (result != RS_DONE)

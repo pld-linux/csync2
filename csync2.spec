@@ -2,7 +2,7 @@ Summary:	Cluster sync tool
 Summary(pl.UTF-8):	Narzędzie do synchronizacji klastra
 Name:		csync2
 Version:	2.0
-Release:	2
+Release:	3
 License:	GPL v2+
 Group:		Daemons
 Source0:	http://oss.linbit.com/csync2/%{name}-%{version}.tar.gz
@@ -12,6 +12,7 @@ Source2:	%{name}.inet
 Source3:	%{name}.sysconfig
 Patch0:		%{name}-fix-sonames.patch
 Patch1:		%{name}-docdata.patch
+Patch2:		librsync.patch
 URL:		http://oss.linbit.com/csync2/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -102,6 +103,7 @@ klastrów HA, HPC, COW oraz farm serwerów.
 %setup -q
 %patch0 -p1
 %patch1 -p0
+%patch2 -p1
 
 %build
 %{__aclocal}
